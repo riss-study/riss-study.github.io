@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="https://rissd.github.io//tag/spring/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://rissd.github.io//" rel="alternate" type="text/html" />
+  <updated>2022-11-28T17:53:17+09:00</updated>
+  <id>https://rissd.github.io//tag/spring/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">리스의 개발자 일지 | </title>
+  
+
+  
+    <subtitle>훌륭한 개발자가 되기 위한 리스의 공간입니다.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Spring - 첫 포스팅!!</title>
+      <link href="https://rissd.github.io//spring-first" rel="alternate" type="text/html" title="Spring - 첫 포스팅!!" />
+      <published>2022-11-28T06:00:00+09:00</published>
+      <updated>2022-11-28T06:00:00+09:00</updated>
+      <id>https://rissd.github.io//spring-first</id>
+      <content type="html" xml:base="https://rissd.github.io//spring-first">&lt;p&gt;리스는 왜 스프링을 선택했을까..?&lt;br /&gt;
+이 글을 적으며… 드는 생각&lt;br /&gt;
+아 공부 처음부터 다시 해야겠다..ㅎㅎ 
+앞으로 열심히 정리해볼개혁!!&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>rissD</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="spring" />
+      
+
+      
+        <summary type="html">리스는 왜 스프링을 선택했을까..? 이 글을 적으며… 드는 생각 아 공부 처음부터 다시 해야겠다..ㅎㅎ 앞으로 열심히 정리해볼개혁!!</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

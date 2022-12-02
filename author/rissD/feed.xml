@@ -2,10 +2,10 @@
 
 <feed xmlns="http://www.w3.org/2005/Atom" >
   <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
-  <link href="https://rissd.github.io//author/rissD/feed.xml" rel="self" type="application/atom+xml" />
-  <link href="https://rissd.github.io//" rel="alternate" type="text/html" />
-  <updated>2022-12-02T15:03:37+09:00</updated>
-  <id>https://rissd.github.io//author/rissD/feed.xml</id>
+  <link href="https://rissd.github.io/author/rissD/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://rissd.github.io/" rel="alternate" type="text/html" />
+  <updated>2022-12-02T15:57:08+09:00</updated>
+  <id>https://rissd.github.io/author/rissD/feed.xml</id>
 
   
   
@@ -33,11 +33,11 @@
   
     <entry>
       <title type="html">etc - 두 번째 포스팅!!</title>
-      <link href="https://rissd.github.io//etc-second" rel="alternate" type="text/html" title="etc - 두 번째 포스팅!!" />
+      <link href="https://rissd.github.io/etc-second" rel="alternate" type="text/html" title="etc - 두 번째 포스팅!!" />
       <published>2022-11-28T07:00:00+09:00</published>
       <updated>2022-11-28T07:00:00+09:00</updated>
-      <id>https://rissd.github.io//etc-second</id>
-      <content type="html" xml:base="https://rissd.github.io//etc-second">&lt;p&gt;테스트용 두 번째 게시글&lt;/p&gt;</content>
+      <id>https://rissd.github.io/etc-second</id>
+      <content type="html" xml:base="https://rissd.github.io/etc-second">&lt;p&gt;테스트용 두 번째 게시글&lt;/p&gt;</content>
 
       
       
@@ -67,11 +67,11 @@
   
     <entry>
       <title type="html">Spring - 첫 포스팅!!</title>
-      <link href="https://rissd.github.io//spring-first" rel="alternate" type="text/html" title="Spring - 첫 포스팅!!" />
+      <link href="https://rissd.github.io/spring-first" rel="alternate" type="text/html" title="Spring - 첫 포스팅!!" />
       <published>2022-11-28T06:00:00+09:00</published>
       <updated>2022-11-28T06:00:00+09:00</updated>
-      <id>https://rissd.github.io//spring-first</id>
-      <content type="html" xml:base="https://rissd.github.io//spring-first">&lt;p&gt;리스는 왜 스프링을 선택했을까..?&lt;br /&gt;
+      <id>https://rissd.github.io/spring-first</id>
+      <content type="html" xml:base="https://rissd.github.io/spring-first">&lt;p&gt;리스는 왜 스프링을 선택했을까..?&lt;br /&gt;
 이 글을 적으며… 드는 생각&lt;br /&gt;
 아 공부 처음부터 다시 해야겠다..ㅎㅎ 
 앞으로 열심히 정리해볼개혁!!&lt;/p&gt;
@@ -187,11 +187,11 @@
   
     <entry>
       <title type="html">etc - 첫 포스팅!!</title>
-      <link href="https://rissd.github.io//etc-first" rel="alternate" type="text/html" title="etc - 첫 포스팅!!" />
+      <link href="https://rissd.github.io/etc-first" rel="alternate" type="text/html" title="etc - 첫 포스팅!!" />
       <published>2022-11-28T06:00:00+09:00</published>
       <updated>2022-11-28T06:00:00+09:00</updated>
-      <id>https://rissd.github.io//etc-first</id>
-      <content type="html" xml:base="https://rissd.github.io//etc-first">&lt;p&gt;안녕하세요. 첫 포스팅입니다!!&lt;br /&gt;
+      <id>https://rissd.github.io/etc-first</id>
+      <content type="html" xml:base="https://rissd.github.io/etc-first">&lt;p&gt;안녕하세요. 첫 포스팅입니다!!&lt;br /&gt;
 우앙… 지난 1년 동안 블로그, 깃허브 정리?? 요런거 왜…함..? 이랬던 제가..&lt;br /&gt;
 드디어 정신을 차리고 블로그를 만들어보게 되었습니다~!&lt;br /&gt;
 지난 1년동안 회사 프로젝트가 많다는 핑계로 포트폴리오는커녕 깃허브 관리도 제대로 하지 않았네요…ㅎㅎ&lt;br /&gt;

@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>Spring - Spring Security (OAuth2) 설정을 위한 Class 생성</title>
+        
+          <description>&lt;p&gt;기존에 사용하던 WebSecurityConfigurerAdapter Class 가 Deprecated 되었다.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 02 Dec 2022 11:00:00 +0900</pubDate>
+        <link>
+        https://rissD.github.io/spring-security-config-class</link>
+        <guid isPermaLink="true">https://rissD.github.io/spring-security-config-class</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>etc - 두 번째 포스팅!!</title>
         
           <description>&lt;p&gt;테스트용 두 번째 게시글&lt;/p&gt;
@@ -54,21 +69,6 @@
         <link>
         https://rissD.github.io/etc-first</link>
         <guid isPermaLink="true">https://rissD.github.io/etc-first</guid>
-      </item>
-      
-    
-      
-      <item>
-        <title>Gettysburg Address</title>
-        
-          <description>&lt;p&gt;Fourscore and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Thu, 19 Nov 1863 19:18:00 +0900</pubDate>
-        <link>
-        https://rissD.github.io/gettysburg-address</link>
-        <guid isPermaLink="true">https://rissD.github.io/gettysburg-address</guid>
       </item>
       
     

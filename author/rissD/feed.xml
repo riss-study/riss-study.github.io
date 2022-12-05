@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
   <link href="https://rissd.github.io/author/rissD/feed.xml" rel="self" type="application/atom+xml" />
   <link href="https://rissd.github.io/" rel="alternate" type="text/html" />
-  <updated>2022-12-02T15:57:08+09:00</updated>
+  <updated>2022-12-05T15:04:32+09:00</updated>
   <id>https://rissd.github.io/author/rissD/feed.xml</id>
 
   
@@ -30,6 +30,126 @@
   
   
 
+  
+    <entry>
+      <title type="html">Spring - Spring Security (OAuth2) 설정을 위한 Class 생성</title>
+      <link href="https://rissd.github.io/spring-security-config-class" rel="alternate" type="text/html" title="Spring - Spring Security (OAuth2) 설정을 위한 Class 생성" />
+      <published>2022-12-02T11:00:00+09:00</published>
+      <updated>2022-12-02T11:00:00+09:00</updated>
+      <id>https://rissd.github.io/spring-security-config-class</id>
+      <content type="html" xml:base="https://rissd.github.io/spring-security-config-class">&lt;p&gt;기존에 사용하던 WebSecurityConfigurerAdapter Class 가 Deprecated 되었다.&lt;/p&gt;
+
+&lt;p&gt;서칭을 해보니 SecurityFilterChain 를 만들어서 Bean 으로 등록하고 사용하라고 한다.&lt;/p&gt;
+
+&lt;p&gt;회사에서 JWT 를 인증 토큰으로 구현하라하여 AbstractHttpConfigurer 를 상속하여 새로운 클래스를 하나 만들었고&lt;br /&gt;
+configure 메서드를 오버라이딩하여 JWT 를 위해 구현한 Authentication, AuthorizationFilter 를 연결하였으며&lt;br /&gt;
+이 커스텀한 클래스를 SecurityChain 에 등록하였다.&lt;/p&gt;
+
+&lt;p&gt;Spring Security 필터들을 무시하고 싶은 특정 URI 들이 있어 찾아보니 WebSecurityCustomizer 를 Bean 으로 등록해서 그 안에서 설정하면 된다고 한다.&lt;/p&gt;
+
+&lt;p&gt;아래는 위를 이용하여 구현한 SpringSecurityConfig Class 이다!&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;@RequiredArgsConstructor
+@Configuration
+@EnableWebSecurity(debug = false)
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
+public class SecurityConfig {
+
+    private final UsersRepository usersRepository;
+    private final RedisLogoutTokenRepository redisLogoutTokenRepository;
+    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+
+    private final PrincipalOAuth2UserService principalOAuth2UserService;
+
+    @Bean
+    public WebSecurityCustomizer configure () throws  Exception {
+        return web -&amp;gt; web
+                .ignoring()
+                .antMatchers(&amp;quot;/&amp;quot;,
+                &amp;quot;/test&amp;quot;,
+                &amp;quot;/filter-ignore&amp;quot;,
+                &amp;quot;/favicon.ico&amp;quot;
+                )
+                .antMatchers(HttpMethod.PUT, &amp;quot;/users/token&amp;quot;);
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
+
+        return http
+                .csrf().disable()   // disable 끄고 메서드 불러오는 법 R&amp;amp;D 하기
+                .cors()
+                .and()
+
+                .formLogin().disable()
+                .httpBasic().disable()
+                .apply(new CustomDsl())
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                .accessDeniedHandler(jwtAccessDeniedHandler)
+                .and()
+
+                .authorizeRequests(authorize -&amp;gt;
+                        authorize
+                                .antMatchers(&amp;quot;/users/**&amp;quot;)
+                                .authenticated()
+                                .antMatchers(&amp;quot;/login/oauth2/**&amp;quot;)
+                                .permitAll()
+                                .anyRequest()
+                                .permitAll())
+
+                .oauth2Login()
+                .userInfoEndpoint()
+                .userService(principalOAuth2UserService)
+
+                .and()
+                .and()
+                .build();
+    }
+
+    @RequiredArgsConstructor
+    public class CustomDsl extends AbstractHttpConfigurer&amp;lt;CustomDsl, HttpSecurity&amp;gt; {
+
+        @Override
+        public void configure(HttpSecurity http) throws Exception {
+            AuthenticationManager authenticationManager=http.getSharedObject(AuthenticationManager.class);
+
+            http
+                    .addFilterBefore(new JwtAuthenticationFilter(authenticationManager, principalOAuth2UserService), WebAsyncManagerIntegrationFilter.class)
+                    .addFilter(new JwtAuthorizationFilter(authenticationManager, usersRepository, redisLogoutTokenRepository));
+
+        }
+    }
+}&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/rissD/e53376f24682bc86ce6b7c73d667f2e2.js&quot;&gt; &lt;/script&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>rissD</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="spring" />
+      
+
+      
+        <summary type="html">기존에 사용하던 WebSecurityConfigurerAdapter Class 가 Deprecated 되었다.</summary>
+      
+
+      
+      
+    </entry>
   
     <entry>
       <title type="html">etc - 두 번째 포스팅!!</title>

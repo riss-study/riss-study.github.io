@@ -186,6 +186,15 @@ into the {body} of the default.hbs template -->
 <script>
     window.store = {
     
+    "spring-security-config-class": {
+        "title": "Spring - Spring Security (OAuth2) 설정을 위한 Class 생성",
+            "author": "rissD",
+            "category": "",
+            "content": "기존에 사용하던 WebSecurityConfigurerAdapter Class 가 Deprecated 되었다.서칭을 해보니 SecurityFilterChain 를 만들어서 Bean 으로 등록하고 사용하라고 한다.회사에서 JWT 를 인증 토큰으로 구현하라하여 AbstractHttpConfigurer 를 상속하여 새로운 클래스를 하나 만들었고configure 메서드를 오버라이딩하여 JWT 를 위해 구현한 Authentication, AuthorizationFilter 를 연결하였으며이 커스텀한 클래스를 SecurityChain 에 등록하였다.Spring Security 필터들을 무시하고 싶은 특정 URI 들이 있어 찾아보니 WebSecurityCustomizer 를 Bean 으로 등록해서 그 안에서 설정하면 된다고 한다.아래는 위를 이용하여 구현한 SpringSecurityConfig Class 이다!@RequiredArgsConstructor@Configuration@EnableWebSecurity(debug = false)@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)public class SecurityConfig {    private final UsersRepository usersRepository;    private final RedisLogoutTokenRepository redisLogoutTokenRepository;    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;    private final PrincipalOAuth2UserService principalOAuth2UserService;    @Bean    public WebSecurityCustomizer configure () throws  Exception {        return web -&gt; web                .ignoring()                .antMatchers(&quot;/&quot;,                &quot;/test&quot;,                &quot;/filter-ignore&quot;,                &quot;/favicon.ico&quot;                )                .antMatchers(HttpMethod.PUT, &quot;/users/token&quot;);    }    @Bean    public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {        return http                .csrf().disable()   // disable 끄고 메서드 불러오는 법 R&amp;D 하기                .cors()                .and()                .formLogin().disable()                .httpBasic().disable()                .apply(new CustomDsl())                .and()                .exceptionHandling()                .authenticationEntryPoint(jwtAuthenticationEntryPoint)                .accessDeniedHandler(jwtAccessDeniedHandler)                .and()                .authorizeRequests(authorize -&gt;                        authorize                                .antMatchers(&quot;/users/**&quot;)                                .authenticated()                                .antMatchers(&quot;/login/oauth2/**&quot;)                                .permitAll()                                .anyRequest()                                .permitAll())                .oauth2Login()                .userInfoEndpoint()                .userService(principalOAuth2UserService)                .and()                .and()                .build();    }    @RequiredArgsConstructor    public class CustomDsl extends AbstractHttpConfigurer&lt;CustomDsl, HttpSecurity&gt; {        @Override        public void configure(HttpSecurity http) throws Exception {            AuthenticationManager authenticationManager=http.getSharedObject(AuthenticationManager.class);            http                    .addFilterBefore(new JwtAuthenticationFilter(authenticationManager, principalOAuth2UserService), WebAsyncManagerIntegrationFilter.class)                    .addFilter(new JwtAuthorizationFilter(authenticationManager, usersRepository, redisLogoutTokenRepository));        }    }}",
+        "url": "/spring-security-config-class"
+    }
+    ,
+    
     "etc-second": {
         "title": "etc - 두 번째 포스팅!!",
             "author": "rissD",
@@ -210,15 +219,6 @@ into the {body} of the default.hbs template -->
             "category": "",
             "content": "안녕하세요. 첫 포스팅입니다!!우앙… 지난 1년 동안 블로그, 깃허브 정리?? 요런거 왜…함..? 이랬던 제가..드디어 정신을 차리고 블로그를 만들어보게 되었습니다~!지난 1년동안 회사 프로젝트가 많다는 핑계로 포트폴리오는커녕 깃허브 관리도 제대로 하지 않았네요…ㅎㅎ앞으로 1년차 주니어 백엔드 개발자 리스의 성장 일지를 채워나가면서 훌륭한 개발자가 되어보겠습니다!!  (p.s. 노래 부르는 걸 정말 많이 좋아합니다. 그래서 음악 관련 일지도 올려보려구요 ㅎㅎ)",
         "url": "/etc-first"
-    }
-    ,
-    
-    "gettysburg-address": {
-        "title": "Gettysburg Address",
-            "author": "abraham",
-            "category": "",
-            "content": "Fourscore and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.Now we are engaged in a great civil war, testing whether that nation, or any nation so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.But, in a larger sense, we can not dedicate-we can not consecrate-we can not hallow-this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us-that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion-that we here highly resolve that these dead shall not have died in vain-that this nation, under God, shall have a new birth of freedom-and that government of the people, by the people, for the people shall not perish from the earth.",
-        "url": "/gettysburg-address"
     }
     
     
